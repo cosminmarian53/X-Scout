@@ -3,7 +3,8 @@ import json
 import argparse
 import google.generativeai as genai
 from dotenv import load_dotenv
-from datetime import datetime
+from datetime import datetime, timezone
+
 # --- CONFIGURATION ---
 load_dotenv()
 API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -36,7 +37,7 @@ def get_ai_summary(content: str):
             generation_config=generation_config,
             safety_settings=safety_settings
         )
-        current_date = datetime.utcnow().strftime("%Y-%m-%d")
+        current_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         prompt = (
             f"As of {current_date}, you are a senior cybersecurity analyst specialized in both traditional security and web3/blockchain, reporting to user '{os.getenv('USER', 'cosminmarian53')}'.\n\n"
             "Your primary directive is to produce a high-level intelligence briefing from the provided tweets. Before summarizing, you must first act as a critical filter. "

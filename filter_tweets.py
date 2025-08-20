@@ -21,7 +21,8 @@ USEFUL_KEYWORDS = {
     # Contextual Keywords (Low score, acts as a multiplier)
     'ethereum': 2, 'solana': 2, 'bitcoin': 1, 'blockchain': 1, 'web3': 1,
     'smart contract': 3, 'protocol': 3, 'mainnet': 2, 'testnet': 1,
-    'governance attack': 9, 'oracle manipulation': 9, 'bridge exploit': 9
+    'governance attack': 9, 'oracle manipulation': 9, 'bridge exploit': 9, "zero-knowledge":5,
+    "noir-lang":3,"zk-proofs":3
 }
 
 # Penalizes investment, trading, and price talk.

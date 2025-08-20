@@ -24,18 +24,19 @@ KEYWORDS = [
     "cybersecurity", "infosec", "web3 security", "smart contract audit",
     "defi exploit", "crypto hack", "bug bounty", "ctf contest", "pentesting",
     # Platform-Specific Security
-    "ethereum security", "solana security", "cosmos security",
+    "ethereum security", "solana security", "cosmos security","zero-knowledge","noir-lang","zk-proofs","zksync"
     # Technical Concepts & Tools
     "solidity", "rustlang", "zero-knowledge proof", "threat intelligence",
     "malware analysis", "vulnerability research", "security advisory",
     "open source security", "devsecops","multiversx","egld","eth","rust","cantina.xyz","code4rena",
     "sherlock.xyz","gmx","cyfrin","cyfrin updraft","codehawks","trail of bits","openzeppelin","pashov",
-    "blockchain","crypto", "privacy","defi","sherlockdefi","security news","AI agents in blockchain","AI in cybersecurity","AI in web3"
+    "blockchain","crypto", "privacy","defi","sherlockdefi","security news",
+    "AI agents in blockchain","AI in cybersecurity","AI in web3","decentralized exchange","smart contract programming","smart contract programmer"
 ]
 
 DEFAULT_OUT_FILE = "twikit_tweets.jsonl"
-MIN_SEARCH_DELAY = 5
-MAX_SEARCH_DELAY = 20
+MIN_SEARCH_DELAY = 12
+MAX_SEARCH_DELAY = 36
 
 # ---------- UTILITIES ----------
 def create_temp_cookie_file():
