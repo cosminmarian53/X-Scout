@@ -7,6 +7,8 @@ wheels/
 *.egg-info
 cookie_gen_user_data/
 cookies.json
+filtered_tweets.jsonl
+summary.txt
 twikit_tweets.jsonl
 # Virtual environments
 .venv

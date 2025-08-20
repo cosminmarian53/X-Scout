@@ -38,13 +38,13 @@ def get_ai_summary(content: str):
         )
         current_date = datetime.utcnow().strftime("%Y-%m-%d")
         prompt = (
-            f"As of {current_date}, you are a senior cybersecurity analyst specialized in both traditional security and web3/blockchain. "
-            "Your task is to summarize a collection of tweets and provide a high-level briefing for intelligence purposes. "
-            "Focus on actionable intelligence, emerging threats, new vulnerabilities, and significant developer news across both traditional and web3 domains. "
-            "Explicitly include details about smart contract vulnerabilities, blockchain exploits, and web3 security tool developments. "
-            "Provide your summary using markdown bullet points (`*` or `-`) and use headers (`## Category`) to organize the information. "
-            "Ignore all price speculation, hype, and marketing. Be direct and factual.\n\n"
-            f"Here are all the relevant tweets to analyze:\n\n{content}"
+            f"As of {current_date}, you are a senior cybersecurity analyst specialized in both traditional security and web3/blockchain, reporting to user '{os.getenv('USER', 'cosminmarian53')}'.\n\n"
+            "Your primary directive is to produce a high-level intelligence briefing from the provided tweets. Before summarizing, you must first act as a critical filter. "
+            "Aggressively discard any tweets that appear to be marketing, spam, price speculation, or otherwise irrelevant to actionable security intelligence. Your summary must only be based on the remaining, high-value information.\n\n"
+            "Focus on: actionable intelligence, emerging threats, new vulnerabilities, and significant developer news across both traditional and web3 domains. "
+            "Explicitly include details about smart contract vulnerabilities, blockchain exploits, and web3 security tool developments.\n\n"
+            "Format the output using markdown bullet points (`*` or `-`) and use headers (`## Category`) to organize the information. Be direct, factual, and concise."
+            f"\n\nHere are all the raw tweets to analyze and filter:\n\n{content}"
         )
         
         response = model.generate_content(prompt)

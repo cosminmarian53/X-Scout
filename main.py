@@ -30,12 +30,12 @@ KEYWORDS = [
     "malware analysis", "vulnerability research", "security advisory",
     "open source security", "devsecops","multiversx","egld","eth","rust","cantina.xyz","code4rena",
     "sherlock.xyz","gmx","cyfrin","cyfrin updraft","codehawks","trail of bits","openzeppelin","pashov",
-    "blockchain","crypto", "privacy"
+    "blockchain","crypto", "privacy","defi","sherlockdefi","security news","AI agents in blockchain","AI in cybersecurity","AI in web3"
 ]
 
 DEFAULT_OUT_FILE = "twikit_tweets.jsonl"
 MIN_SEARCH_DELAY = 5
-MAX_SEARCH_DELAY = 25
+MAX_SEARCH_DELAY = 20
 
 # ---------- UTILITIES ----------
 def create_temp_cookie_file():
