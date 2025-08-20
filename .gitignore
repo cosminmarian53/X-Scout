@@ -5,7 +5,9 @@ build/
 dist/
 wheels/
 *.egg-info
-
+cookie_gen_user_data/
+cookies.json
+twikit_tweets.jsonl
 # Virtual environments
 .venv
 .env

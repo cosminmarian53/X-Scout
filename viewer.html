@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Security Feed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #111827;
+            font-family: sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+
+        .tweet-text a {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        /* Styles for the AI Summary Content */
+        .summary-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #374151;
+            padding-bottom: 0.5rem;
+        }
+
+        .summary-content ul {
+            list-style-position: outside;
+            padding-left: 1.25rem;
+        }
+
+        .summary-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .summary-content strong {
+            color: #d1d5db;
+            font-weight: 600;
+        }
+
+        .summary-content p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-6">
+        <header class="mb-6 border-b border-gray-700 pb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-white">AI-Powered Security Feed</h1>
+            <p class="text-gray-400 mt-1" id="feed-subtitle">Fetching latest intelligence...</p>
+        </header>
+
+        <!-- AI Summary Section -->
+        <section id="summary-section" class="mb-8 bg-gray-800 border border-blue-500/30 rounded-lg shadow-lg">
+            <h2 class="text-xl font-bold text-white p-4 border-b border-gray-700">AI Analyst Briefing</h2>
+            <div id="summary-container" class="p-4 md:p-6 text-gray-300 summary-content">
+                <p>Loading summary...</p>
+            </div>
+        </section>
+
+        <!-- Tweets Container -->
+        <main id="tweets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Tweet cards will be injected here by JavaScript -->
+        </main>
+    </div>
+
+    <script>
+        /**
+         * THIS IS THE NEW, SMARTER FORMATTING FUNCTION.
+         * It takes the raw text from summary.txt and converts its markdown
+         * into clean HTML for display.
+         * @param {string} text - The raw text from summary.txt.
+         * @returns {string} - Formatted HTML.
+         */
+        function formatSummary(text) {
+            return text
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .map(line => {
+                    // Convert headers (e.g., "## Title") to <h3>
+                    if (line.startsWith('## ')) {
+                        return `<h3>${line.substring(3)}</h3>`;
+                    }
+                    // Convert bold text (e.g., "**Title:**") to <strong>
+                    line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    // Convert list items (e.g., "* Item") to <li>
+                    if (line.startsWith('* ') || line.startsWith('- ')) {
+                        return `<li>${line.substring(2)}</li>`;
+                    }
+                    // Wrap remaining lines that are not list items in <p> tags
+                    if (!line.startsWith('<li>')) {
+                        return `<p>${line}</p>`;
+                    }
+                    return line;
+                })
+                .join('')
+                // Wrap list items in <ul> tags
+                .replace(/<li>/g, '<ul><li>')
+                .replace(/<\/li>(?!<li>)/g, '</li></ul>');
+        }
+
+        /**
+         * Calculates relative time from a date string.
+         * @param {string} dateString - An ISO 8601 date string.
+         * @returns {string} - A human-readable relative time.
+         */
+        function timeAgo(dateString) {
+            const now = new Date();
+            const past = new Date(dateString);
+            const seconds = Math.floor((now - past) / 1000);
+
+            let interval = seconds / 31536000;
+            if (interval > 1) return Math.floor(interval) + " years ago";
+            interval = seconds / 2592000;
+            if (interval > 1) return Math.floor(interval) + " months ago";
+            interval = seconds / 86400;
+            if (interval > 1) return Math.floor(interval) + " days ago";
+            interval = seconds / 3600;
+            if (interval > 1) return Math.floor(interval) + " hours ago";
+            interval = seconds / 60;
+            if (interval > 1) return Math.floor(interval) + " minutes ago";
+            return Math.floor(seconds) + " seconds ago";
+        }
+
+        /**
+         * Creates an HTML card for a single tweet object.
+         * @param {object} tweet - The tweet data.
+         * @returns {string} - The HTML string for the tweet card.
+         */
+        function createTweetCard(tweet) {
+            const tweetLink = `https://x.com/${tweet.user_screen_name}/status/${tweet.id}`;
+            const userLink = `https://x.com/${tweet.user_screen_name}`;
+            const relativeTime = timeAgo(tweet.created_at);
+            const absoluteTime = new Date(tweet.created_at).toLocaleString();
+            const sanitizedText = tweet.text
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+
+            return `
+                <div class="bg-gray-800 rounded-lg p-4 flex flex-col justify-between border border-gray-700 hover:border-blue-500 transition-all duration-200">
+                    <div>
+                        <div class="flex items-center mb-3">
+                            <div class="ml-3">
+                                <a href="${userLink}" target="_blank" class="font-bold text-white hover:underline">${tweet.user_name}</a>
+                                <p class="text-sm text-gray-400">@${tweet.user_screen_name}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 whitespace-pre-wrap text-base tweet-text">${sanitizedText}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-700 text-sm text-gray-500 flex justify-between items-center">
+                        <div>
+                            <span title="Filter Score" class="font-bold text-green-400 bg-green-900/50 px-2 py-1 rounded-md">${tweet.filter_score}</span>
+                            <a href="${tweetLink}" target="_blank" class="ml-2 hover:underline" title="${absoluteTime}">${relativeTime}</a>
+                        </div>
+                        <div class="flex items-center space-x-3"><span>❤️ ${tweet.favorite_count}</span></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Fetches and displays all data when the page loads.
+         */
+        async function loadData() {
+            const summaryContainer = document.getElementById('summary-container');
+            const tweetsContainer = document.getElementById('tweets-container');
+            const subtitle = document.getElementById('feed-subtitle');
+
+            try {
+                const summaryResponse = await fetch('summary.txt');
+                if (!summaryResponse.ok) throw new Error(`File not found or server error (${summaryResponse.status})`);
+                const summaryText = await summaryResponse.text();
+                summaryContainer.innerHTML = formatSummary(summaryText);
+            } catch (error) {
+                summaryContainer.innerHTML = `<p class="text-red-400">Could not load AI summary: ${error.message}. Try running 'make' again.</p>`;
+            }
+
+            try {
+                const tweetsResponse = await fetch('filtered_tweets.jsonl');
+                if (!tweetsResponse.ok) throw new Error(`File not found or server error (${tweetsResponse.status})`);
+                const tweetsText = await tweetsResponse.text();
+                const lines = tweetsText.trim().split('\n').filter(Boolean);
+
+                if (lines.length === 0) {
+                    subtitle.textContent = "No high-value tweets found.";
+                    tweetsContainer.innerHTML = `<p class="text-gray-500 col-span-full text-center">No tweets to display. Run 'make' to fetch new data.</p>`;
+                } else {
+                    subtitle.textContent = `Displaying ${lines.length} high-value tweets.`;
+                    tweetsContainer.innerHTML = lines.map(line => createTweetCard(JSON.parse(line))).join('');
+                }
+            } catch (error) {
+                subtitle.textContent = "Error loading tweets.";
+                tweetsContainer.innerHTML = `<div class="bg-red-900/50 text-red-200 p-4 rounded-lg col-span-full">Could not load tweets: ${error.message}. Try running 'make' again.</div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+
+</html>
