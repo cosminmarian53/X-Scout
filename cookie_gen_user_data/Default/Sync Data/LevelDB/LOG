@@ -1,3 +1,2 @@
-2025/08/20-03:10:55.366 9a23 Reusing MANIFEST /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Sync Data/LevelDB/MANIFEST-000001
-2025/08/20-03:10:55.367 9a23 Recovering log #3
-2025/08/20-03:10:55.367 9a23 Reusing old log /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Sync Data/LevelDB/000003.log 
+2025/09/04-16:05:06.881 1186 Creating DB /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Sync Data/LevelDB since it was missing.
+2025/09/04-16:05:06.922 1186 Reusing MANIFEST /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Sync Data/LevelDB/MANIFEST-000001

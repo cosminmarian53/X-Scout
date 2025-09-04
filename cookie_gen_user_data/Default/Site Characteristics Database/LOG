@@ -1,3 +1,2 @@
-2025/08/20-03:10:55.346 9a1a Reusing MANIFEST /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Site Characteristics Database/MANIFEST-000001
-2025/08/20-03:10:55.350 9a1a Recovering log #3
-2025/08/20-03:10:55.350 9a1a Reusing old log /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Site Characteristics Database/000003.log 
+2025/09/04-16:05:06.895 1197 Creating DB /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Site Characteristics Database since it was missing.
+2025/09/04-16:05:06.922 1197 Reusing MANIFEST /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Site Characteristics Database/MANIFEST-000001

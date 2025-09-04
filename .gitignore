@@ -6,8 +6,10 @@ dist/
 wheels/
 *.egg-info
 cookie_gen_user_data/
+summary.txt
 cookies.json
 filtered_tweets.jsonl
+temp_cookies.json
 summary.txt
 twikit_tweets.jsonl
 # Virtual environments

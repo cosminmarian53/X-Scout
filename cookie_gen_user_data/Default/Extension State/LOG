@@ -1,3 +1,2 @@
-2025/08/20-03:10:55.513 9a18 Reusing MANIFEST /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Extension State/MANIFEST-000001
-2025/08/20-03:10:55.513 9a18 Recovering log #3
-2025/08/20-03:10:55.513 9a18 Reusing old log /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Extension State/000003.log 
+2025/09/04-16:05:07.524 1185 Creating DB /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Extension State since it was missing.
+2025/09/04-16:05:07.534 1185 Reusing MANIFEST /home/cosmin/py-x-scraper/cookie_gen_user_data/Default/Extension State/MANIFEST-000001
