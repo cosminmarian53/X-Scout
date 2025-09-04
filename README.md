@@ -41,9 +41,8 @@ The project runs in a simple, multi-step pipeline orchestrated by the `Makefile`
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd py-x-scraper
-```
+git clone https://github.com/cosminmarian53/X-Scout
+cd X-Scout
 
 ### 2. Install Dependencies
 
@@ -136,8 +135,8 @@ Follow these steps to get the project running.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd py-x-scrapper
+git clone https://github.com/cosminmarian53/X-Scout
+cd X-Scout
 ```
 
 ### 2. Install System Dependencies
