@@ -1,22 +1,47 @@
-# Python-generated files
+# --- Python Virtual Environments ---
+.venv/
+.uv-venv/
+
+# --- Python Cache & Compiled Files ---
 __pycache__/
 *.py[oc]
+*.so
+
+# --- Python Distribution & Packaging ---
+.Python
 build/
+develop-eggs/
 dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
 wheels/
-*.egg-info
-cookie_gen_user_data/
-summary.txt
-cookies.json
-filtered_tweets.jsonl
-temp_cookies.json
-summary.txt
-twikit_tweets.jsonl
-# Virtual environments
-.venv
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Project-Specific ---
+# Sensitive credentials and session data
 .env
-# Playwright
+cookies.json
+temp_cookies.json
+cookie_gen_user_data/
+
+# Generated output files
+twikit_tweets.jsonl
+filtered_tweets.jsonl
+summary.txt
+
+# --- Playwright ---
+# Node.js dependencies for Playwright
 node_modules/
+
+# Test results and reports
 /test-results/
 /playwright-report/
 /blob-report/
